@@ -12,6 +12,32 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <rest.assured.version>5.5.0</rest.assured.version>
     </properties>
-    
+
+       <dependencies>
+            <!-- RestAssured dependencies -->
+            <dependency>
+                <groupId>io.rest-assured</groupId>
+                <artifactId>rest-assured</artifactId>
+                <version>${rest.assured.version}</version>
+                <exclusions>
+                        <exclusion>
+                            <groupId>commons-codec</groupId>
+                            <artifactId>commons-codec</artifactId>
+                        </exclusion>
+                    </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>io.rest-assured</groupId>
+                <artifactId>json-path</artifactId>
+                <version>${rest.assured.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.rest-assured</groupId>
+                <artifactId>xml-path</artifactId>
+                <version>${rest.assured.version}</version>
+            </dependency>
+        </dependencies>
+
 </project>
