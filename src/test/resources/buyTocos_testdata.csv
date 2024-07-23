@@ -1,0 +1,8 @@
+userId,amount,expectedStatusCode,expectedMessage
+1,0.001,200,Tocos bought successfully
+1,200,200,Tocos bought successfully
+1,200.001,400,Insufficient fiat balance
+1,0,400,Invalid Tocos amount
+2,100,200,Tocos bought successfully
+2,100.001,400,Transaction limit exceeded
+3,100,400,User not found
