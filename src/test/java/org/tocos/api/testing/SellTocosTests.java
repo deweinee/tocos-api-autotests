@@ -2,6 +2,9 @@ package org.tocos.api.testing;
 
 import io.restassured.response.Response;
 import org.apache.commons.csv.CSVRecord;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -14,8 +17,9 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class SellTocosTests extends ApiTestSetup {
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "user id: {0}, amount: {1}, expected status code: {2}, expected message: {3}")
     @MethodSource("sellTocosDataProvider")
+    @DisplayName("Selling Tocos")
     public void testSellTocos(int userId, float amount, int expectedStatusCode, String expectedMessage) {
         Response response = apiClient.sellTocos(userId, amount);
 
@@ -24,7 +28,7 @@ public class SellTocosTests extends ApiTestSetup {
     }
 
     static Stream<Arguments> sellTocosDataProvider() throws IOException {
-        return CsvUtils.parseCsv("src/test/resources/sellTocos_testdata.csv").map(SellTocosTests::convertCsvRecordToArguments);
+        return CsvUtils.parseCsv("src/test/resources/testdata/sellTocos_testdata.csv").map(SellTocosTests::convertCsvRecordToArguments);
     }
 
     private static Arguments convertCsvRecordToArguments(CSVRecord record) {
